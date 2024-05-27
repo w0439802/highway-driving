@@ -1,24 +1,26 @@
+namespace SpriteKind {
+    export const Object = SpriteKind.create()
+}
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     if (car.x > lane1) {
         car.x -= 32
     }
-})
-sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Enemy, function (sprite, otherSprite) {
-	
 })
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     if (car.x < lane4) {
         car.x += 32
     }
 })
-scene.onOverlapTile(SpriteKind.Enemy, assets.tile`transparency16`, function (sprite, location) {
-	
-})
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
+    music.play(music.melodyPlayable(music.bigCrash), music.PlaybackMode.UntilDone)
     game.over(false)
 })
-let enemyCar: Sprite = null
 let obstacle: Sprite = null
+let enemyCar2: Sprite = null
+let enemyCar: Sprite = null
+let Sign: Sprite = null
+let enemyBus: Sprite = null
+let enemyCar3: Sprite = null
 let lane4 = 0
 let lane3 = 0
 let lane2 = 0
@@ -146,9 +148,132 @@ scene.setBackgroundImage(img`
     bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
     bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
     `)
-game.splash("Press A To Start")
+game.splash("Nova Scotia Highway Driving", "Press A To Start")
 if (true) {
-    tiles.setCurrentTilemap(tilemap`level`)
+    game.setGameOverScoringType(game.ScoringType.HighScore)
+    effects.clouds.startScreenEffect()
+    scene.setBackgroundImage(img`
+        ee777777777777777777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777
+        ee777777777777777777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777
+        ee777777777777777777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777
+        ee777777777777777777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777
+        ee777777777777777777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777
+        ee777777777777777777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777
+        eeee7777777777777777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777
+        eeee7777777777777777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777
+        ee777777777777777777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777
+        ee777777777777777777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777
+        eeee7777777777777777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777
+        eeee7777777777777777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777
+        eeee7777777777777777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777
+        ee777777777777777777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777
+        ee777777777777777777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777
+        eeee7777777777777777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777
+        eeee7777777777777777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777
+        eeee7777777777777777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777
+        eeee7777777777777777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777
+        eeee7777777777777777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777
+        ee777777777777777777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777
+        ee777777777777777777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777
+        ee777777777777777777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777
+        ee777777777777777777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777
+        ee777777777777777777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777
+        ee777777777777777777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777
+        eeee7777777777777777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777
+        eeee7777777777777777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777
+        eeee7777777777777777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777
+        eeee7777777777777777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777
+        eeee7777777777777777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777
+        eeee7777777777777777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777
+        ee777777777777777777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777
+        ee777777777777777777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777
+        ee777777777777777777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777
+        eeee7777777777777777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777
+        eeeee777777777777777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777
+        eeeee777777777777777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777
+        eeeee777777777777777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777
+        eeee7777777777777777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777
+        eeee7777777777777777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777
+        ee777777777777777777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777
+        ee777777777777777777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777
+        ee777777777777777777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777
+        ee777777777777777777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777
+        ee777777777777777777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777
+        ee777777777777777777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777
+        ee777777777777777777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777
+        ee777777777777777777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777
+        eeee7777777777777777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777
+        eeeee777777777777777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777
+        eeeee777777777777777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777
+        eeeee777777777777777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777
+        eeeee777777777777777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777
+        eeee7777777777777777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777bbbbbbb11bbbbbbb7777777777777777
+        eeee7777777777777777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777
+        eee77777777777777777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777bbbbbbbbbbbbbbbb7777777777777777
+        `)
     lane1 = 40
     lane2 = 72
     lane3 = 104
@@ -157,35 +282,76 @@ if (true) {
     car.setPosition(lane2, 100)
 }
 game.onUpdateInterval(5000, function () {
-    obstacle = sprites.create(img`
-        . . . . . . . . b b b b b . . . 
-        . . . . . . b b d d d d b b . . 
-        . . . . . b d d d d d d d c . . 
-        . . . . c d d d d d d d d c . . 
-        . . . c b d d d d d d d b c c . 
-        . . . c b b d d d d b c c c c . 
-        . . c c d b b b c c c c c c c . 
-        . . c c c d d d d c c d d d c c 
-        . c d b c c b b c c d d d d d c 
-        . c b d d b b b c c d d d d d c 
-        . c c b b b b c b c b d d d b c 
-        c b b c c c c c b b b b b c c c 
-        c c b b c c c c c d d d d d b c 
-        c c c c c c b b b b b c c c c c 
-        c c c c c c c b b b b b c c c c 
-        c c c c c c c c b b b b b c c c 
-        `, SpriteKind.Enemy)
-    obstacle.setVelocity(0, 50)
-    obstacle.setPosition([
-    lane1,
-    lane2,
-    lane3,
-    lane4
-    ]._pickRandom(), 0)
+    if (80 < info.score()) {
+        enemyCar3 = sprites.create(assets.image`myImage3`, SpriteKind.Enemy)
+        enemyCar3.setVelocity(0, randint(15, 40))
+        enemyCar3.setPosition([
+        lane1,
+        lane2,
+        lane3,
+        lane4
+        ]._pickRandom(), 0)
+    }
 })
-game.onUpdateInterval(2000, function () {
+game.onUpdateInterval(15000, function () {
+    if (info.score() > 120) {
+        enemyBus = sprites.create(assets.image`myImage6`, SpriteKind.Enemy)
+        enemyBus.setVelocity(0, randint(15, 40))
+        enemyBus.setPosition([
+        lane1,
+        lane2,
+        lane3,
+        lane4
+        ]._pickRandom(), 0)
+    }
+})
+game.onUpdateInterval(25000, function () {
+    if (0 < info.score() && 30 > info.score()) {
+        Sign = sprites.create(assets.image`myImage9`, SpriteKind.Object)
+        Sign.setPosition(18, 0)
+        Sign.setVelocity(0, 50)
+    } else if (30 < info.score() && 60 > info.score() && false) {
+        Sign = sprites.create(assets.image`myImage12`, SpriteKind.Object)
+        Sign.setPosition(18, 0)
+        Sign.setVelocity(0, 50)
+    } else if (60 < info.score() && 90 > info.score()) {
+        Sign = sprites.create(assets.image`myImage5`, SpriteKind.Object)
+        Sign.setPosition(18, 0)
+        Sign.setVelocity(0, 50)
+    } else if (90 < info.score() && 120 > info.score()) {
+        Sign = sprites.create(assets.image`myImage4`, SpriteKind.Object)
+        Sign.setPosition(18, 0)
+        Sign.setVelocity(0, 50)
+    } else if (120 < info.score() && 150 > info.score()) {
+        Sign = sprites.create(assets.image`myImage7`, SpriteKind.Object)
+        Sign.setPosition(18, 0)
+        Sign.setVelocity(0, 50)
+    } else if (150 < info.score() && 180 > info.score()) {
+        Sign = sprites.create(assets.image`myImage8`, SpriteKind.Object)
+        Sign.setPosition(18, 0)
+        Sign.setVelocity(0, 50)
+    } else if (180 < info.score() && 210 > info.score()) {
+        Sign = sprites.create(assets.image`myImage13`, SpriteKind.Object)
+        Sign.setPosition(18, 0)
+        Sign.setVelocity(0, 50)
+    } else if (210 < info.score() && 240 > info.score()) {
+        Sign = sprites.create(assets.image`myImage11`, SpriteKind.Object)
+        Sign.setPosition(18, 0)
+        Sign.setVelocity(0, 50)
+    } else if (240 < info.score() && 270 > info.score()) {
+        Sign = sprites.create(assets.image`myImage14`, SpriteKind.Object)
+        Sign.setPosition(18, 0)
+        Sign.setVelocity(0, 50)
+    } else if (300 < info.score() && 400 > info.score()) {
+    	
+    }
+})
+game.onUpdateInterval(1000, function () {
+    info.changeScoreBy(1)
+})
+game.onUpdateInterval(4000, function () {
     enemyCar = sprites.create(assets.image`myImage1`, SpriteKind.Enemy)
-    enemyCar.setVelocity(0, 25)
+    enemyCar.setVelocity(0, randint(15, 40))
     enemyCar.setPosition([
     lane1,
     lane2,
@@ -193,6 +359,25 @@ game.onUpdateInterval(2000, function () {
     lane4
     ]._pickRandom(), 0)
 })
-game.onUpdateInterval(1000, function () {
-    info.changeScoreBy(1)
+game.onUpdateInterval(6000, function () {
+    if (50 < info.score()) {
+        enemyCar2 = sprites.create(assets.image`myImage2`, SpriteKind.Enemy)
+        enemyCar2.setVelocity(0, randint(15, 40))
+        enemyCar2.setPosition([
+        lane1,
+        lane2,
+        lane3,
+        lane4
+        ]._pickRandom(), 0)
+    }
+})
+game.onUpdateInterval(3000, function () {
+    obstacle = sprites.create(assets.image`myImage`, SpriteKind.Enemy)
+    obstacle.setVelocity(0, 50)
+    obstacle.setPosition([
+    lane1,
+    lane2,
+    lane3,
+    lane4
+    ]._pickRandom(), 0)
 })
