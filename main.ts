@@ -310,7 +310,7 @@ game.onUpdateInterval(25000, function () {
         Sign = sprites.create(assets.image`myImage9`, SpriteKind.Object)
         Sign.setPosition(18, 0)
         Sign.setVelocity(0, 50)
-    } else if (30 < info.score() && 60 > info.score() && false) {
+    } else if (30 < info.score() && 60 > info.score()) {
         Sign = sprites.create(assets.image`myImage12`, SpriteKind.Object)
         Sign.setPosition(18, 0)
         Sign.setVelocity(0, 50)
@@ -343,7 +343,7 @@ game.onUpdateInterval(25000, function () {
         Sign.setPosition(18, 0)
         Sign.setVelocity(0, 50)
     } else if (300 < info.score() && 400 > info.score()) {
-    	
+        game.gameOver(true)
     }
 })
 game.onUpdateInterval(1000, function () {
