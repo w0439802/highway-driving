@@ -60,9 +60,6 @@ let lane3 = 0
 let lane2 = 0
 let lane1 = 0
 let car: Sprite = null
-let introCar = sprites.create(assets.image`backwardsCar`, SpriteKind.Player)
-introCar.setPosition(20, 8)
-introCar.setVelocity(0, 15)
 scene.setBackgroundImage(img`
     ........................................................88.........8888.....................................................................................
     ......................................................888888.....88888888c..................................................................................
