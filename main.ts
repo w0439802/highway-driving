@@ -174,11 +174,11 @@ scene.setBackgroundImage(img`
     ...cccccccc.....cccccccccccccbbbbbbcccbbbbccccccbbbcccc.....ccccccccccccbcccc....cccccccccccccccccc.....cccccbcccccccccccccccbbbbbbbbbbbcccc....ccccccc.....
     .....ccccc........cccc......ccccccccccccccccccccccccc.........cccc....ccccc........ccccccccccccc..........ccccccc......cccccccccccccccccccc.......cccc......
     `)
-game.showLongText("PRess a To Start", DialogLayout.Bottom)
+game.showLongText("Press A To Start", DialogLayout.Bottom)
 if (true) {
     music.play(music.stringPlayable("B A G A G F A C5 ", 120), music.PlaybackMode.LoopingInBackground)
     game.setGameOverScoringType(game.ScoringType.HighScore)
-    tiles.setCurrentTilemap(tilemap`level`)
+    tiles.setCurrentTilemap(tilemap`level0`)
     effects.clouds.startScreenEffect()
     car = sprites.create(assets.image`myImage0`, SpriteKind.Player)
     lane1 = 56
